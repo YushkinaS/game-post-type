@@ -90,22 +90,11 @@ function cptui_register_my_taxes() {
 }
 
 function display_game_meta_box( $post ) {
-	
-
-
-			
-			
 	$taxonomy = get_taxonomy( 'game' );
 	$tax_name = 'game';
     $user_can_assign_terms = current_user_can( $taxonomy->cap->assign_terms )
-	
-	
-	?>
 
-
-
-
-
+?>
 	<select data-placeholder="игры"  multiple  name='game33[]' class="chosen-select" style="width:100%;">	
 		<option value=""></option>
 <?php
@@ -119,22 +108,16 @@ function display_game_meta_box( $post ) {
 	$args = array(
 		'hide_empty'        => false, 
 		'exclude'           => $ids_for_exclude
-
 	); 
 	
 	$games=get_terms('game',$args); 	
-		
+
 	foreach ( $games as $game ) {
 		echo '<option value='.$game->name.'>'.$game->name.'</option>';
 	}
 ?> 
  </select>
- 
-
 <?php
-	
-
-	
 }
 
 add_action( 'save_post', 'save_game_tax' );
@@ -142,7 +125,6 @@ function save_game_tax( $ID ) {
 	if ( isset( $_POST['game33'] ) && $_POST['game33'] != '' ) {
 		wp_set_post_terms( $ID, $_POST['game33'] , 'game', false );
 	}
-
 }
 
 add_filter ('the_content', 'dop_fields');
@@ -198,76 +180,22 @@ function create_term_for_new_game($ID, $post ) {
 }
 
 
-add_action('wp_enqueue_scripts', 'site_scripts_and_styles');
-function site_scripts_and_styles() {
-	
-		wp_enqueue_script(
-		'jquery-1-6-4',
-		'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'
-	
-	);
-	
-	wp_enqueue_script(
-		'jquery-ui',
-		'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',
-		array('jquery')
-	);
-	
-	wp_enqueue_script(
-		'chosen',
-		plugin_dir_url( __FILE__ ).'chosen/chosen.jquery.js',
-		array('jquery-1-6-4')
-	);	
-	
-	wp_enqueue_script(
-		'custom-script',
-		plugin_dir_url( __FILE__ ).'script.js',
-		array('jquery-ui')
-	);
-
-	wp_enqueue_style(
-    	'smoothness',
-    	'//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css'
-	);
-	
-	wp_enqueue_style(
-		'games-post-type',
-		plugin_dir_url( __FILE__ ).'style.css'
-	);
-	
-	wp_enqueue_style(
-		'chosen',
-		plugin_dir_url( __FILE__ ).'chosen/chosen.css'
-	);
-}
-
 add_action( 'admin_enqueue_scripts', 'admin_scripts_and_styles' );
 function admin_scripts_and_styles() {
-	
 	wp_enqueue_script(
-		'jquery-ui',
-		'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',
-		array('jquery')
+		'jquery'
 	);
 	
-	wp_enqueue_script(
-		'jquery-1-6-4',
-		'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'
-	
-	);
-		
 	wp_enqueue_script(
 		'chosen',
 		plugin_dir_url( __FILE__ ).'chosen/chosen.jquery.js',
-		array('jquery-1-6-4')
+		array('jquery')
 	);	
 	
-
-
 	wp_enqueue_script(
 		'custom-script',
 		plugin_dir_url( __FILE__ ).'script.js',
-		array('jquery-ui','chosen')
+		array('chosen')
 	);
 	
 	wp_enqueue_style(
