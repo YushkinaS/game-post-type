@@ -1,23 +1,5 @@
 jQuery(document).ready(function($) {
     // Внутри этой функции $() будет работать как синоним jQuery()
-
-  $('a').hover(
-    function(){
-     $(this).addClass('active123');
-    },
-    function(){
-     $(this).removeClass('active123');  
-    }
-  );
-  
-  
-   $(function() {
-$( "#datepicker" ).datepicker();
-});
-
-
-  
-
     var config = {
       '.chosen-select'           : {},
       '.chosen-select-deselect'  : {allow_single_deselect:true},
@@ -28,11 +10,6 @@ $( "#datepicker" ).datepicker();
     for (var selector in config) {
       $(selector).chosen(config[selector]);
     }
-
-
-    
-
-	
 });
 
 		  
